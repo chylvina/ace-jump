@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html data-ng-csp data-ng-app="option">
+<head>
+  <title>{{'optionPageTitle' | i18nReplace}}</title>
+  <meta charset="utf-8">
+
+  <!-- build:css({.tmp,app}) css/option.css -->
+  <link rel="stylesheet" type="text/css" href="css/options.css"/>
+  <link rel="stylesheet" type="text/css" href="js/vendor/spectrum/spectrum.css">
+  <!-- endbuild -->
+
+  <!-- build:js({.tmp,app}) js/option.js -->
+  <script src="bower_components/jquery/jquery.min.js"></script>
+  <script src="js/vendor/spectrum/spectrum.js"></script>
+  <script type="text/javascript" src="js/vendor/angular.min.js"></script>
+  <script type="text/javascript" src="js/angular-extend/angular.base-service.js"></script>
+  <script type="text/javascript" src="js/controller/option.js"></script>
+  <script type="text/javascript" src="js/filter/filter.i18n.js"></script>
+  <script type="text/javascript" src="js/service/service.storage.js"></script>
+  <script type="text/javascript" src="js/service/service.setting.js"></script>
+  <script type="text/javascript" src="js/directive/bindHtml.js"></script>
+  <!-- endbuild -->
+</head>
+<body data-ng-controller="optionController">
+<div class="contentBox">
+  <div id="header">
+    <h1>{{'name' | i18nReplace}}</h1>
+  </div>
+
+  <!-- Theme Color -->
+  <h4 id="colorTitle">
+    {{'spectrumTip' | i18nReplace}}
+  </h4>
+
+  <div style="margin: 2px 0 0 56px;">
+    <label style="padding-left: 20px;">
+      {{'colorTitle' | i18nReplace}}
+    </label>
+    <input id='spectrum-color'/>
+    <label style="padding-left: 20px;">
+      {{'bgColorTitle' | i18nReplace}}
+    </label>
+    <input id='spectrum-bgcolor'/>
+    <label style="padding-left: 20px;">
+      {{'borderColorTitle' | i18nReplace}}
+    </label>
+    <input id='spectrum-bordercolor'/>
+  </div>
+
+  <!-- Screen Shot -->
+  <div id="shortcutSettingDiv" style="margin: 0 0 5px 0">
+    <h4 id="shorcutSetting">{{'shortcut' | i18nReplace}}</h4>
+
+    <div style="margin: 2px 0 0 56px">
+      <input type="checkbox" id="settingShortcut" data-ng-model="setting.hotKeyEnabled">
+      <label for="settingShortcut" id="settingShortcutText">
+        {{'enableShortcut' | i18nReplace}}
+      </label>
+    </div>
+    <div id="hot-key-setting"
+         data-ng-show="setting.hotKeyEnabled">
+      <span id="typeSimple" class="hot-key">
+        <label for="typeSimple" class="capture-text">
+          {{'TYPE_SIMPLE' | i18nReplace}}
+        </label>
+        <span>
+          Ctrl+Alt+
+          <select ng-model="setting.hotKeySimple">
+            <option value="@">--</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="G">G</option>
+            <option value="H">H</option>
+            <option value="I">I</option>
+            <option value="J">J</option>
+            <option value="K">K</option>
+            <option value="L">L</option>
+            <option value="M">M</option>
+            <option value="N">N</option>
+            <option value="O">O</option>
+            <option value="P">P</option>
+            <option value="Q">Q</option>
+            <option value="R">R</option>
+            <option value="S">S</option>
+            <option value="T">T</option>
+            <option value="U">U</option>
+            <option value="V">V</option>
+            <option value="W">W</option>
+            <option value="X">X</option>
+            <option value="Y">Y</option>
+            <option value="Z">Z</option>
+          </select>
+        </span>
+      </span>
+      <span id="typeEntire" class="hot-key">
+        <label for="typeEntire" class="capture-text">
+          {{'TYPE_ENTIRE' | i18nReplace}}
+        </label>
+        <span>
+          Ctrl+Alt+
+          <select ng-model="setting.hotKeyEntire">
+            <option value="@">--</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="G">G</option>
+            <option value="H">H</option>
+            <option value="I">I</option>
+            <option value="J">J</option>
+            <option value="K">K</option>
+            <option value="L">L</option>
+            <option value="M">M</option>
+            <option value="N">N</option>
+            <option value="O">O</option>
+            <option value="P">P</option>
+            <option value="Q">Q</option>
+            <option value="R">R</option>
+            <option value="S">S</option>
+            <option value="T">T</option>
+            <option value="U">U</option>
+            <option value="V">V</option>
+            <option value="W">W</option>
+            <option value="X">X</option>
+            <option value="Y">Y</option>
+            <option value="Z">Z</option>
+          </select>
+        </span>
+      </span>
+      <span id="typeSmart" class="hot-key">
+        <label for="typeSmart" class="capture-text">
+          {{'TYPE_SMART' | i18nReplace}}
+        </label>
+        <span>
+          Ctrl+Alt+
+          <select ng-model="setting.hotKeySmart">
+            <option value="@">--</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="G">G</option>
+            <option value="H">H</option>
+            <option value="I">I</option>
+            <option value="J">J</option>
+            <option value="K">K</option>
+            <option value="L">L</option>
+            <option value="M">M</option>
+            <option value="N">N</option>
+            <option value="O">O</option>
+            <option value="P">P</option>
+            <option value="Q">Q</option>
+            <option value="R">R</option>
+            <option value="S">S</option>
+            <option value="T">T</option>
+            <option value="U">U</option>
+            <option value="V">V</option>
+            <option value="W">W</option>
+            <option value="X">X</option>
+            <option value="Y">Y</option>
+            <option value="Z">Z</option>
+          </select>
+        </span>
+      </span>
+    </div>
+    <div id="error-info" data-ng-if="error">
+      {{error}}
+    </div>
+  </div>
+  <div class="closeBtn">
+    <button id="saveAndClose"
+            data-ng-disabled="error!=''"
+            data-ng-click="saveAndClose()">
+      {{'saveAndClose' | i18nReplace}}
+    </button>
+    <button
+      data-ng-click="setDefault()">
+      {{'setDefault' | i18nReplace}}
+    </button>
+  </div>
+</div>
+</body>
+</html>

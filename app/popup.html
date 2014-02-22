@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html data-ng-csp data-ng-app="popup">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <!-- build:css({.tmp,app}) css/popup.css -->
+  <link type="text/css" rel="stylesheet" href="css/popup.css">
+  <!-- endbuild -->
+
+  <!-- build:js({.tmp,app}) js/popup.js -->
+  <script type="text/javascript" src="js/vendor/angular.min.js"></script>
+  <script type="text/javascript" src="js/angular-extend/angular.base-service.js"></script>
+  <script type="text/javascript" src="js/controller/popup.js"></script>
+  <script type="text/javascript" src="js/filter/filter.i18n.js"></script>
+  <script type="text/javascript" src="js/service/service.storage.js"></script>
+  <script type="text/javascript" src="js/service/service.setting.js"></script>
+  <script type="text/javascript" src="js/directive/bindHtml.js"></script>
+  <!-- endbuild -->
+</head>
+<body data-ng-controller="popupController">
+<div id="tips"
+     data-ng-if="tip != ''"
+     data-bind-html-Unsafe="tip">
+</div>
+<ul data-ng-if="tip == ''">
+  <li id="colorpicker"
+      data-ng-class="{'enabled': appSetting.get('type') == appSetting.TYPE_SIMPLE}"
+      data-ng-click="toggle(appSetting.TYPE_SIMPLE)">
+    <span class="title">{{'TYPE_SIMPLE' | i18nReplace}}</span>
+    <span class="shortcut"
+      data-ng-if="appSetting.get('hotKeyEnabled') == true">Ctrl + Alt + {{appSetting.get('hotKeySimple')}}</span>
+  </li>
+  <li id="hRuler"
+      data-ng-class="{'enabled': appSetting.get('type') == appSetting.TYPE_ENTIRE}"
+      data-ng-click="toggle(appSetting.TYPE_ENTIRE)">
+    <span class="title">{{'TYPE_ENTIRE' | i18nReplace}}</span>
+    <span class="shortcut"
+          data-ng-if="appSetting.get('hotKeyEnabled') == true">Ctrl + Alt + {{appSetting.get('hotKeyEntire')}}</span>
+  </li>
+  <li id="vRuler"
+      data-ng-class="{'enabled': appSetting.get('type') == appSetting.TYPE_SMART}"
+      data-ng-click="toggle(appSetting.TYPE_SMART)">
+    <span class="title">{{'TYPE_SMART' | i18nReplace}}</span>
+    <span class="shortcut"
+          data-ng-if="appSetting.get('hotKeyEnabled') == true">Ctrl + Alt + {{appSetting.get('hotKeySmart')}}</span>
+  </li>
+</ul>
+<hr data-ng-if="tip == ''" />
+<ul data-ng-if="tip == ''">
+  <li id="config"
+      data-ng-click="goSetting()">
+    <span class="title">{{'setting' | i18nReplace}}</span>
+    <span class="shortcut"></span>
+  </li>
+</ul>
+</body>
+</html>

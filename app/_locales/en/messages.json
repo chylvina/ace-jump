@@ -1,0 +1,101 @@
+{
+  "name":{
+    "message":"Green Eye"
+  },
+  "extDescription":{
+    "message":"Change background and foreground colors for eye health and normal vision, support simple change, entire change and smart change."
+  },
+  "optionPageTitle":{
+    "message":"Green Eye option"
+  },
+  "shoppingAssistSetting":{
+    "message":"We need your support"
+  },
+  "shortcut":{
+    "message":"Shortcut"
+  },
+  "enableShortcut":{
+    "message":"Enable shortcut"
+  },
+  "colorpicker":{
+    "message":"Color Picker"
+  },
+  "rulerH":{
+    "message":"Horizontal Ruler"
+  },
+  "rulerV":{
+    "message":"Vertical Ruler"
+  },
+  "saveAndClose":{
+    "message":"Save and close"
+  },
+  "spectrumChoose":{
+    "message":"choose"
+  },
+  "spectrumCancel":{
+    "message":"cancel"
+  },
+  "spectrumTip":{
+    "message":"Choose Color"
+  },
+  "optionColorTitle":{
+    "message":"Colors"
+  },
+  "rulerActivatedTip":{
+    "message":"Ruler is activated."
+  },
+  "designertoolsActivatedTip":{
+    "message":"Designer tools is activated."
+  },
+  "designertoolsDeactivatedTip":{
+    "message":"Designer tools is deactivated."
+  },
+  "colorpickerActivatedTip":{
+    "message":"Color picker is activated."
+  },
+  "deactivateTip":{
+    "message":"Deactivate(ESC)"
+  },
+  "hideTip":{
+    "message":"Hide"
+  },
+  "showTip":{
+    "message":"Show"
+  },
+  "setting": {
+    "message":"Options"
+  },
+  "tip1": {
+    "message":"Chrome doesn't allow extensions to interact with special Chrome pages like this one."
+  },
+  "tip2": {
+    "message":"Chrome doesn't allow extensions to interact with Chrome Web Store."
+  },
+  "tip3": {
+    "message":"Designer Tools need 'Allow access to file URLs' permission. <a style='color: #0066cc' href='http://quick-markup.com/p/52663fcf6b3ce' target='_blank'>Refer to this page.</a>"
+  },
+  "TYPE_SIMPLE": {
+    "message": "Green background"
+  },
+  "TYPE_ENTIRE": {
+    "message": "Green all"
+  },
+  "TYPE_SMART": {
+    "message": "Green smart"
+  },
+  "colorTitle": {
+    "message": "Text Color"
+  },
+  "borderColorTitle": {
+    "message": "Border Color"
+  },
+  "bgColorTitle": {
+    "message": "Background Color"
+  },
+  "setDefault": {
+    "message": "Restore Default"
+  },
+  "errorDuplicate": {
+    "message": "Duplicate Hot Key!"
+  }
+}

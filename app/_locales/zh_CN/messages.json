@@ -1,0 +1,98 @@
+{
+  "name": {
+    "message": "绿色眼睛"
+  },
+  "extDescription": {
+    "message": "修改网页的背景色与前景色，来保护您的眼睛与视力, 支持简单修改, 全部修改和智能修改三种方式."
+  },
+  "optionPageTitle": {
+    "message": "绿色眼睛选项"
+  },
+  "shoppingAssistSetting": {
+    "message": "我们需要您的支持"
+  },
+  "shortcut": {
+    "message": "快捷键"
+  },
+  "enableShortcut": {
+    "message": "启用快捷键"
+  },
+  "colorpicker": {
+    "message": "取色工具"
+  },
+  "rulerH": {
+    "message": "横向标尺"
+  },
+  "rulerV": {
+    "message": "纵向标尺"
+  },
+  "saveAndClose": {
+    "message": "保存并关闭"
+  },
+  "spectrumChoose": {
+    "message": "选择"
+  },
+  "spectrumCancel": {
+    "message": "取消"
+  },
+  "spectrumTip": {
+    "message": "颜色选择"
+  },
+  "colorTitle": {
+    "message": "文字颜色"
+  },
+  "borderColorTitle": {
+    "message": "边框颜色"
+  },
+  "bgColorTitle": {
+    "message": "背静颜色"
+  },
+  "setDefault": {
+    "message": "恢复默认"
+  },
+  "rulerActivatedTip": {
+    "message": "标尺正在工作."
+  },
+  "designertoolsActivatedTip": {
+    "message": "设计师助手正在工作."
+  },
+  "designertoolsDeactivatedTip": {
+    "message": "设计师助手已经隐藏."
+  },
+  "colorpickerActivatedTip": {
+    "message": "取色工具正在工作."
+  },
+  "deactivateTip": {
+    "message": "取消(ESC)"
+  },
+  "hideTip": {
+    "message": "隐藏"
+  },
+  "showTip": {
+    "message": "显示"
+  },
+  "setting": {
+    "message": "设置"
+  },
+  "tip1": {
+    "message": "抱歉, 绿色眼睛无法在此页面使用."
+  },
+  "tip2": {
+    "message": "抱歉, 绿色眼睛无法在谷歌应用商店页面使用."
+  },
+  "tip3": {
+    "message": "您需要开启'允许访问文件网址'权限才能设计本地页面. <a style='color: #0066cc' href='http://quick-markup.com/p/52663fcf6b3ce' target='_blank'>参考此页面</a>"
+  },
+  "TYPE_SIMPLE": {
+    "message": "修改背景"
+  },
+  "TYPE_ENTIRE": {
+    "message": "全部修改"
+  },
+  "TYPE_SMART": {
+    "message": "智能修改"
+  },
+  "errorDuplicate": {
+    "message": "重复热键!"
+  }
+}
