@@ -98,24 +98,140 @@
     }
   };
 
+  var jump = {
+
+    code2char: function(c) {
+      return String.fromCharCode(c);
+    },
+
+    char2code: function(c) {
+      return c.toUpperCase().charCodeAt(0);
+    },
+
+    render: function(container, map, highlightRe) {
+      var html = '';
+
+      for (var key in map) {
+        if (Object.prototype.hasOwnProperty.call(map, key)) {
+          var obj = map[key];
+          // highlight with <span>
+          var content = highlightRe ? key.replace(highlightRe, '<span>$1</span>') : key;
+          html += '<div class="chylvina-ace-jump" style="left: ' + obj.offset.left +'px; top: ' + obj.offset.top + 'px;">' + content + '</div>';
+        }
+      }
+
+      container.html(html);
+    },
+
+    parseDocument: function() {
+      var getIndex = function(index, total) {
+        return index;
+      };
+
+      var map = {};
+
+      var anchors = $('a[href]');
+      var buttons = $('button');
+      var inputs = $('input[type=text]');
+
+      var index = 0;
+      var total = anchors.length + buttons.length + inputs.length;
+
+      anchors.each(function(i, elem) {
+        elem = $(elem);
+        map[getIndex(index++, total)] = {
+          type: 'anchor',
+          href: elem.prop('href'),
+          offset: elem.offset(),
+          elem: elem
+        };
+      });
+
+      buttons.each(function(i, elem) {
+        elem = $(elem);
+        map[getIndex(index++, total)] = {
+          type: 'button',
+          offset: elem.offset(),
+          elem: elem
+        };
+      });
+
+      inputs.each(function(i, elem) {
+        elem = $(elem);
+        map[getIndex(index++, total)] = {
+          type: 'input',
+          offset: elem.offset(),
+          elem: elem
+        };
+      });
+
+      return map;
+    },
+
+    init: function() {
+      var win, container, map, inputBuffer = '';
+
+      var clear = function() {
+        win.off('.ace-jump');
+        win = null;
+
+        container = null;
+        map = null;
+
+        $('#chylvina-ace-jump').remove();
+      };
+
+      // init
+      $('body').prepend('<div id="chylvina-ace-jump"><style>.chylvina-ace-jump { position:absolute !important; width: auto; height: 16px; font-size: 12px; line-height: 14px; text-align: center; color: #fff; background-color:#0066cc; margin: 0; padding: 2px; } .chylvina-ace-jump span { background-color: #ff6600; }</style><div id="chylvina-ace-jump-container" style="position:absolute;width:100%;height:100%;left:0;top:0;bottom:0;right:0;z-index:99999;"></div></div>')
+      win = $(window);
+      container = $('#chylvina-ace-jump-container');
+      map = jump.parseDocument();
+      jump.render(container, map);
+
+      win.on('keydown.ace-jump', function(e) {
+        inputBuffer += jump.code2char(e.keyCode);
+
+        var re = new RegExp('^(' + inputBuffer + ')', 'i');
+
+        var newMap = {};
+        for (var key in map) {
+          if (Object.prototype.hasOwnProperty.call(map, key)) {
+            if(re.test(key)) {
+              newMap[key] = map[key];
+            }
+          }
+        }
+
+        jump.render(container, newMap, re);
+      });
+
+      win.on('keyup.ace-jump', function(e) {
+        if(map[inputBuffer]) {
+          var obj = map[inputBuffer];
+          switch(obj.type) {
+            case 'anchor':
+              window.location.href = obj.href;
+              break;
+            case 'button':
+              obj.elem.focus();
+              clear();
+              break;
+            case 'input':
+              obj.elem.focus();
+              clear();
+              break;
+            default:
+              clear();
+              break;
+          }
+        }
+      });
+    }
+  };
+
   $(document).ready(function() {
     shortcutKey.init();
     page.init();
-
-    /*chrome.storage.sync.get('useShoppingAssist', function(items) {
-      if (items.useShoppingAssist == true) {
-        var s = document.createElement('script');
-        s.type = 'text/javascript';
-        s.innerText = "var vglnk = {api_url: '//api.viglink.com/api', key: '6bd5c05cd90e1902e22081bcaa452f9c'};";
-        document.body.appendChild(s);
-
-        s = document.createElement('script');
-        s.type = 'text/javascript';
-        s.async = true;
-        s.src = 'http://cdn.viglink.com/api/vglnk.js';
-        document.body.appendChild(s);
-      }
-    });*/
   });
 
 })();
