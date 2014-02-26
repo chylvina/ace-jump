@@ -1,6 +1,6 @@
 {
   "name": "__MSG_name__",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "manifest_version": 2,
   "description": "__MSG_extDescription__",
   "default_locale": "en",
@@ -24,11 +24,6 @@
   },
 
   "content_scripts": [
-    {
-      "css": [ "css/inject.css" ],
-      "matches": [ "http://*/*", "https://*/*", "ftp://*/*", "file://*/*" ],
-      "run_at": "document_end"
-    },
     {
       "js": [ "js/inject.js"],
       "matches": [ "http://*/*", "https://*/*", "ftp://*/*", "file://*/*" ],
