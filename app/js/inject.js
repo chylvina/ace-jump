@@ -161,60 +161,94 @@
       return map;
     },
 
+    clear: function() {
+      jump.win.off('.ace-jump');
+      jump.win = null;
+
+      jump.container = null;
+      jump.map = null;
+
+      $('#chylvina-ace-jump').remove();
+
+      jump.inputBuffer = '';
+    },
+
+    win: null,
+    container: null,
+    map: null,
+    inputBuffer: '',
+
     init: function() {
-      var win, container, map, inputBuffer = '';
-
-      var clear = function() {
-        win.off('.ace-jump');
-        win = null;
-
-        container = null;
-        map = null;
-
-        $('#chylvina-ace-jump').remove();
-      };
+      var enableKeyUp = false;
 
       // init
       $('body').prepend('<div id="chylvina-ace-jump"><style>.chylvina-ace-jump { position:absolute !important; width: auto; height: 16px; font-size: 12px; line-height: 14px; text-align: center; color: #fff; background-color:#0066cc; margin: 0; padding: 2px; } .chylvina-ace-jump span { background-color: #ff6600; }</style><div id="chylvina-ace-jump-container" style="position:absolute;width:100%;height:100%;left:0;top:0;bottom:0;right:0;z-index:99999;"></div></div>')
-      win = $(window);
-      container = $('#chylvina-ace-jump-container');
-      map = jump.parseDocument();
-      jump.render(container, map);
+      jump.win = $(window);
+      jump.container = $('#chylvina-ace-jump-container');
+      jump.map = jump.parseDocument();
+      jump.render(jump.container, jump.map);
 
-      win.on('keydown.ace-jump', function(e) {
-        inputBuffer += jump.code2char(e.keyCode);
+      jump.win.on('keydown.ace-jump', function(e) {
+        enableKeyUp = false;
 
-        var re = new RegExp('^(' + inputBuffer + ')', 'i');
+        e.preventDefault();
+        e.stopPropagation();
+
+        if(e.keyCode == 27) { // ESC
+          jump.clear();
+          return;
+        }
+
+        if(e.keyCode == 8) { // Backspace
+          if(jump.inputBuffer == '')  return;
+
+          jump.inputBuffer = jump.inputBuffer.substr(0, Math.max(jump.inputBuffer.length - 1, 0));
+        }
+        else if(e.keyCode >= 65 && e.keyCode <= 90) { // a - z
+          jump.inputBuffer += jump.code2char(e.keyCode);
+        }
+        else {
+          return;
+        }
+
+        enableKeyUp = true;
+
+        var re = new RegExp('^(' + jump.inputBuffer + ')', 'i');
 
         var newMap = {};
-        for (var key in map) {
-          if (Object.prototype.hasOwnProperty.call(map, key)) {
+        for (var key in jump.map) {
+          if (Object.prototype.hasOwnProperty.call(jump.map, key)) {
             if(re.test(key)) {
-              newMap[key] = map[key];
+              newMap[key] = jump.map[key];
             }
           }
         }
 
-        jump.render(container, newMap, re);
+        jump.render(jump.container, newMap, re);
       });
 
-      win.on('keyup.ace-jump', function(e) {
-        if(map[inputBuffer]) {
-          var obj = map[inputBuffer];
+      jump.win.on('keyup.ace-jump', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if(!enableKeyUp) return;
+
+        if(jump.map[jump.inputBuffer]) {
+          var obj = jump.map[jump.inputBuffer];
           switch(obj.type) {
             case 'anchor':
               window.location.href = obj.href;
               break;
             case 'button':
               obj.elem.focus();
-              clear();
+              jump.clear();
               break;
             case 'input':
               obj.elem.focus();
-              clear();
+              jump.clear();
               break;
             default:
-              clear();
+              jump.clear();
               break;
           }
         }
