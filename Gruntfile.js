@@ -208,16 +208,21 @@ module.exports = function (grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
-      html: '<%= yeoman.app %>/index.html',
-      options: {
-        dest: '<%= yeoman.dist %>'
+      page: {
+        src: [
+          '<%= yeoman.app %>/popup.html',
+          '<%= yeoman.app %>/options.html'
+        ],
+        options: {
+          dest: '<%= yeoman.dist %>'
+        }
       }
     },
 
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
       html: ['<%= yeoman.dist %>/{,*/}*.html'],
-      css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
+      css: ['<%= yeoman.dist %>/css/{,*/}*.css'],
       options: {
         assetsDirs: ['<%= yeoman.dist %>']
       }
@@ -290,13 +295,12 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>',
           dest: '<%= yeoman.dist %>',
           src: [
-            '*.{ico,png,txt}',
-            '.htaccess',
-            '*.html',
-            'views/{,*/}*.html',
-            'bower_components/**/*',
-            'images/{,*/}*.{webp}',
-            'fonts/*'
+            '*.{json,html}',
+            'img/*',
+            'img/inject.js',
+            'img/background.js',
+            '_locales/*',
+            '_locales/**/*'
           ]
         }, {
           expand: true,
@@ -354,6 +358,18 @@ module.exports = function (grunt) {
     //   dist: {}
     // },
 
+    uglify: {
+      options: {
+        mangle: true
+      },
+      other: {
+        files : {
+          '<%= yeoman.dist %>/js/background.js' : '<%= yeoman.app %>/js/background.js',
+          '<%= yeoman.dist %>/js/inject.js' : '<%= yeoman.app %>/js/inject.js'
+        }
+      }
+    },
+
     // Test settings
     karma: {
       unit: {
@@ -394,19 +410,15 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'bower-install',
     'useminPrepare',
     'concurrent:dist',
-    'autoprefixer',
     'concat',
     'ngmin',
     'copy:dist',
-    'cdnify',
     'cssmin',
     'uglify',
-    'rev',
-    'usemin',
-    'htmlmin'
+    'usemin'
+    //'htmlmin'
   ]);
 
   grunt.registerTask('default', [
