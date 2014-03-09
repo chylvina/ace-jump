@@ -14,6 +14,10 @@
       window.addEventListener('keydown', shortcutKey.handleShortcut, false);
     },
 
+    clear: function() {
+      window.removeEventListener('keydown', shortcutKey.handleShortcut);
+    },
+
     isThisPlatform: function(operationSystem) {
       return navigator.userAgent.toLowerCase().indexOf(operationSystem) > -1;
     },
@@ -190,6 +194,10 @@
 
       jump.win.on('keydown.ace-jump', function(e) {
         enableKeyUp = false;
+
+        if(event.ctrlKey || event.altKey || event.metaKey) {
+          return;
+        }
 
         e.preventDefault();
         e.stopPropagation();
