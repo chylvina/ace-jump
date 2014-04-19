@@ -246,6 +246,7 @@
           switch(obj.type) {
             case 'anchor':
               window.location.href = obj.href;
+              jump.clear();
               break;
             case 'button':
               obj.elem.focus();
