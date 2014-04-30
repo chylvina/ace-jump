@@ -14,6 +14,7 @@
 
     init: function(keyCode) {
       shortcutKey.theKeyCode = keyCode;
+
       window.addEventListener('keydown', shortcutKey.handleShortcut, false);
     },
 
@@ -186,6 +187,8 @@
     inputBuffer: '',
 
     init: function() {
+      if($('#chylvina-ace-jump').length > 0) return;
+
       var enableKeyUp = false;
 
       // init
@@ -273,6 +276,14 @@
       if(r.hotKeyEnabled) {
         shortcutKey.init(r.hotKeyActivate.toUpperCase().charCodeAt(0));
       }
+
+      chrome.runtime.onMessage.addListener(function(req, sender, sendResponse) {
+        switch(req.msg) {
+          case 'activate':
+            jump.init();
+            break;
+        }
+      });
     });
   });
 
