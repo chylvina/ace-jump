@@ -25,24 +25,10 @@
 <ul data-ng-if="tip == ''">
   <li id="colorpicker"
       data-ng-class="{'enabled': appSetting.get('type') == appSetting.TYPE_SIMPLE}"
-      data-ng-click="toggle(appSetting.TYPE_SIMPLE)">
-    <span class="title">{{'TYPE_SIMPLE' | i18nReplace}}</span>
+      data-ng-click="activate()">
+    <span class="title">{{'TYPE_ACTIVATE' | i18nReplace}}</span>
     <span class="shortcut"
-      data-ng-if="appSetting.get('hotKeyEnabled') == true">Ctrl + Alt + {{appSetting.get('hotKeySimple')}}</span>
-  </li>
-  <li id="hRuler"
-      data-ng-class="{'enabled': appSetting.get('type') == appSetting.TYPE_ENTIRE}"
-      data-ng-click="toggle(appSetting.TYPE_ENTIRE)">
-    <span class="title">{{'TYPE_ENTIRE' | i18nReplace}}</span>
-    <span class="shortcut"
-          data-ng-if="appSetting.get('hotKeyEnabled') == true">Ctrl + Alt + {{appSetting.get('hotKeyEntire')}}</span>
-  </li>
-  <li id="vRuler"
-      data-ng-class="{'enabled': appSetting.get('type') == appSetting.TYPE_SMART}"
-      data-ng-click="toggle(appSetting.TYPE_SMART)">
-    <span class="title">{{'TYPE_SMART' | i18nReplace}}</span>
-    <span class="shortcut"
-          data-ng-if="appSetting.get('hotKeyEnabled') == true">Ctrl + Alt + {{appSetting.get('hotKeySmart')}}</span>
+      data-ng-if="appSetting.get('hotKeyEnabled') == true">{{appSetting.get('ctrlKey')}} + {{appSetting.get('hotKeyActivate')}}</span>
   </li>
 </ul>
 <hr data-ng-if="tip == ''" />

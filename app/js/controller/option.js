@@ -7,8 +7,18 @@ angular.module('option', [
 
   })
   .controller('optionController', function($rootScope, $scope, appSetting) {
+
     appSetting.bind('ready', function() {
       $scope.setting = $.extend(true, {}, appSetting.data);
+
+      switch(window.navigator.platform) {
+        case 'MacIntel':
+          $scope.setting.ctrlKey = 'Command';
+          break;
+        default:
+          $scope.setting.ctrlKey = 'Alt';
+          break;
+      }
 
       $scope.saveAndClose = function() {
         appSetting.set($scope.setting)

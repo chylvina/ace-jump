@@ -16,10 +16,12 @@ angular.module('service.setting', [
       borderColor: '#ccc',
       bgColor: '#cce8cf',
       type: s.TYPE_SMART,
-      hotKeyEnabled: false,
+      hotKeyEnabled: true,
       hotKeySimple: 'S',
       hotKeyEntire: 'E',
       hotKeySmart: 'M',
+      hotKeyActivate: 'J',
+      ctrlKey: 'ctrl',
       useShoppingAssist: false
     };
 

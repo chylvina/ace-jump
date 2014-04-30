@@ -83,6 +83,9 @@
   "tip3": {
     "message": "您需要开启'允许访问文件网址'权限才能设计本地页面. <a style='color: #0066cc' href='http://quick-markup.com/p/52663fcf6b3ce' target='_blank'>参考此页面</a>"
   },
+  "TYPE_ACTIVATE": {
+    "message": "激活 ACE Jump"
+  },
   "TYPE_SIMPLE": {
     "message": "修改背景"
   },

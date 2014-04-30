@@ -10,7 +10,10 @@
 
   var shortcutKey = {
 
-    init: function() {
+    theKeyCode: 0,
+
+    init: function(keyCode) {
+      shortcutKey.theKeyCode = keyCode;
       window.addEventListener('keydown', shortcutKey.handleShortcut, false);
     },
 
@@ -26,14 +29,14 @@
       var isMac = shortcutKey.isThisPlatform('mac');
       var keyCode = event.keyCode;
 
-      if(keyCode == 74) {
+      if(keyCode == shortcutKey.theKeyCode) {
         if(isMac) {
           if(!event.ctrlKey && !event.altKey && event.metaKey && !event.shiftKey) {
             jump.init();
           }
         }
         else {
-          if(!event.ctrlKey && event.altKey && event.shiftKey) {
+          if(!event.ctrlKey && event.altKey && !event.shiftKey) {
             jump.init();
           }
         }
@@ -266,7 +269,11 @@
   };
 
   $(document).ready(function() {
-    shortcutKey.init();
+    chrome.storage.sync.get(["hotKeyEnabled", "hotKeyActivate"], function (r) {
+      if(r.hotKeyEnabled) {
+        shortcutKey.init(r.hotKeyActivate.toUpperCase().charCodeAt(0));
+      }
+    });
   });
 
 })();

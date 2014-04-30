@@ -24,26 +24,6 @@
     <h1>{{'name' | i18nReplace}}</h1>
   </div>
 
-  <!-- Theme Color -->
-  <h4 id="colorTitle">
-    {{'spectrumTip' | i18nReplace}}
-  </h4>
-
-  <div style="margin: 2px 0 0 56px;">
-    <label style="padding-left: 20px;">
-      {{'colorTitle' | i18nReplace}}
-    </label>
-    <input id='spectrum-color'/>
-    <label style="padding-left: 20px;">
-      {{'bgColorTitle' | i18nReplace}}
-    </label>
-    <input id='spectrum-bgcolor'/>
-    <label style="padding-left: 20px;">
-      {{'borderColorTitle' | i18nReplace}}
-    </label>
-    <input id='spectrum-bordercolor'/>
-  </div>
-
   <!-- Screen Shot -->
   <div id="shortcutSettingDiv" style="margin: 0 0 5px 0">
     <h4 id="shorcutSetting">{{'shortcut' | i18nReplace}}</h4>
@@ -55,88 +35,14 @@
       </label>
     </div>
     <div id="hot-key-setting"
-         data-ng-show="setting.hotKeyEnabled">
-      <span id="typeSimple" class="hot-key">
-        <label for="typeSimple" class="capture-text">
-          {{'TYPE_SIMPLE' | i18nReplace}}
+         data-ng-show="setting.hotKeyActivate">
+      <span id="typeActivate" class="hot-key">
+        <label for="typeActivate" class="capture-text">
+          {{'TYPE_ACTIVATE' | i18nReplace}}
         </label>
         <span>
-          Ctrl+Alt+
-          <select ng-model="setting.hotKeySimple">
-            <option value="@">--</option>
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="D">D</option>
-            <option value="E">E</option>
-            <option value="F">F</option>
-            <option value="G">G</option>
-            <option value="H">H</option>
-            <option value="I">I</option>
-            <option value="J">J</option>
-            <option value="K">K</option>
-            <option value="L">L</option>
-            <option value="M">M</option>
-            <option value="N">N</option>
-            <option value="O">O</option>
-            <option value="P">P</option>
-            <option value="Q">Q</option>
-            <option value="R">R</option>
-            <option value="S">S</option>
-            <option value="T">T</option>
-            <option value="U">U</option>
-            <option value="V">V</option>
-            <option value="W">W</option>
-            <option value="X">X</option>
-            <option value="Y">Y</option>
-            <option value="Z">Z</option>
-          </select>
-        </span>
-      </span>
-      <span id="typeEntire" class="hot-key">
-        <label for="typeEntire" class="capture-text">
-          {{'TYPE_ENTIRE' | i18nReplace}}
-        </label>
-        <span>
-          Ctrl+Alt+
-          <select ng-model="setting.hotKeyEntire">
-            <option value="@">--</option>
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="D">D</option>
-            <option value="E">E</option>
-            <option value="F">F</option>
-            <option value="G">G</option>
-            <option value="H">H</option>
-            <option value="I">I</option>
-            <option value="J">J</option>
-            <option value="K">K</option>
-            <option value="L">L</option>
-            <option value="M">M</option>
-            <option value="N">N</option>
-            <option value="O">O</option>
-            <option value="P">P</option>
-            <option value="Q">Q</option>
-            <option value="R">R</option>
-            <option value="S">S</option>
-            <option value="T">T</option>
-            <option value="U">U</option>
-            <option value="V">V</option>
-            <option value="W">W</option>
-            <option value="X">X</option>
-            <option value="Y">Y</option>
-            <option value="Z">Z</option>
-          </select>
-        </span>
-      </span>
-      <span id="typeSmart" class="hot-key">
-        <label for="typeSmart" class="capture-text">
-          {{'TYPE_SMART' | i18nReplace}}
-        </label>
-        <span>
-          Ctrl+Alt+
-          <select ng-model="setting.hotKeySmart">
+          {{setting.ctrlKey}} +
+          <select ng-model="setting.hotKeyActivate">
             <option value="@">--</option>
             <option value="A">A</option>
             <option value="B">B</option>
