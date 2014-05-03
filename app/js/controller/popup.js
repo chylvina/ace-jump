@@ -21,6 +21,11 @@ angular.module('popup', [
         $scope.appSetting = appSetting;
       };
 
+      $scope.goSetting = function() {
+        chrome.tabs.create({ url: 'options.html' });
+        window.close();
+      };
+
       chrome.tabs.getSelected(null, function (t) {
         tab = t;
 
